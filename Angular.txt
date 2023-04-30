@@ -1,0 +1,105 @@
+//download angular
+npm install -g @angular/cli
+
+//create new app  (ng is abreviation for Angular)
+ng new my-app --style=css --routing --skip-install
+--skip-install => skip install errors
+--routing => create a default routing for the app
+--style=css => precise that we'll work with css style in project
+
+//move to app and run the app
+cd my-app
+npm build // first time to download dependencies
+ng serve --open
+
+//download bootstrap font awesome
+npm install bootstrap jquery popper.js font-awesome
+
+//dans angular.json dans "styles": [] ajouter les dependances bootstrap et font-awesome
+//dans angular.json dans "scripts": [] ajouter les dependances jquery et popper et bootstrap
+
+//each component have 4 files
+html file
+css file
+ts file (component file)
+ts spec file
+
+//add a component
+ng g component componentName
+
+//we define routes in component-routing.module.ts
+import { NameComponent } from '../namecomponent/namecomponent.component';
+
+const routes: Routes = [
+  {path:"namecomponent", component:NameComponent}
+];
+
+//ajouter router outlet dans l'app component après le nav
+ <div class="container">
+        <router-outlet>
+        </router-outlet>
+ </div>
+
+//classe à definir
+export class HomeComponent implements OnInit {
+  Nom!: string;
+  Prenom!: string;
+  Tel!: number;
+  Date!: Date;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.Nom = "Haimeur";
+    this.Prenom = "Hamza";
+    this.Tel = 0o617530505;
+    this.Date = new Date();
+
+
+  }
+}
+
+//in order to print variables in html file we do the following : {{variableName}}
+//pour declare une boucle on utilise :  <tr *ngFor="let contact of Contacts">
+                        <td>{{contact.Id}}</td>
+                        <td>{{contact.Nom}}</td>
+                        <td>{{contact.Prenom}}</td>
+                        <td>{{contact.Tel}}</td>
+                        <td>{{contact.Date}}</td>
+                    </tr>
+//pour gérer les conditions
+<td *ngIf="contact.status=='active'">{{contact.status}}</td>
+<td *ngIf="contact.status=='active'; else inactive"> => inactive est le nom du template utilisée dans le else
+<ng-template #inactive>
+                            <td>
+                                En attente
+                            </td>
+</ng-template>
+
+//in const routes we define { path: "", redirectTo: "home", pathMatch: "full" }
+pathMatch => take the full path
+
+//pour filtrer une variable on utilise le pipe comme suit : Liste des contacts {{Date | date}}
+date : "longdate"
+date : "shortdate" etc.
+{{contact.Nom}} => {{contact.Nom | nom : "uppercase"}}
+
+//pour lancer un evenement sur un bouttoun
+ <tr *ngFor="let contact of Contacts; let i = index"> => on definit un index de la ligne sur laquelle s'executera la méthode (l'evenement)
+<button (click) = "supprimerContact(i)" type="button" class="btn btn-danger btn-sm"><i
+                                class="fa fa-trash">Supprimer</i></button> => on définit la méthode dans l'evenement click
+
+//pour génerer un service (g => generate)
+ng g service nomservice
+
+//on créer un api dans htdocs dans xampp pour manipuler la commuication avec la bd
+
+//on importe HttpClientModule dans app.module
+
+//ngModel dans un input permet de lier la valeur dans l'html avec la valeur dans la classe
+
+// si on veut utiliser ngModule on importe import { FormsModule } from '@angular/forms'; // import FormsModule dans app module
+
+//router est utilisé dans le component.ts afin de redirecter sans rafraichir la page
+
+
