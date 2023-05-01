@@ -1,0 +1,120 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Liste des contacts du: <strong>{{Date | date: "shortDate"}}</strong>
+        </div>
+        <div class="overflow-x auto">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contact of Contacts; let i = index">
+                        <td>{{contact.id}}</td>
+                        <td>{{contact.nom | uppercase}}</td>
+                        <td>{{contact.prenom}}</td>
+                        <td>{{contact.tel}}</td>
+                        <td *ngIf="contact.status=='active'; else inactive">
+                            <span class="badge text-bg-success">{{contact.status}}</span>
+                        </td>
+                        <td><button (click)="deleteContact(i)" type="button" data-bs-toggle="modal"
+                                data-bs-target="#deleteContact" class="btn btn-danger btn-sm"><i
+                                    class="fa fa-trash"></i>Supprimer</button></td>
+                        <td><button data-bs-toggle="modal" data-bs-target="#editContact" (click)="editContact(i)"
+                                class="btn btn-primary btn-sm" type="button">
+                                <i class="fa fa-pencil-alt"></i>Modifier
+                            </button>
+                        </td>
+                        <ng-template #inactive>
+                            <td>
+                                <span class="badge text-bg-warning text-white">
+                                    En attente
+                                </span>
+                            </td>
+                        </ng-template>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Contact Model pour editer-->
+<div class="modal" tabindex="-1" id="editContact">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-pencil-alt">Modifier contact</i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row" method="post">
+                    <div class="col-md-12 mb-3">
+                        <label for="nomInput" class="form-label">Nom</label>
+                        <input [(ngModel)]="ContactToEdit.nom" name="nom" required type="text" class="form-control"
+                            placeholder="Nom">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="prenomInput" class="form-label">Prénom</label>
+                        <input [(ngModel)]="ContactToEdit.prenom" name="prenom" required type="text"
+                            class="form-control" id="prenomInput" placeholder="Prénom">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="telInput" class="form-label">Tel</label>
+                        <input [(ngModel)]="ContactToEdit.tel" name="tel" required type="text" class="form-control"
+                            id="telInput" placeholder="Tel">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="statusInput" class="form-label">Status</label>
+                        <select [(ngModel)]="ContactToEdit.status" name="status" required class="form-control"
+                            id="statusInput">
+                            <option disabled value="">-- choisir --</option>
+                            <option [ngValue]="'active'">active</option>
+                            <option [ngValue]="'inactive'">inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <button (click)="confirmUpdate()" class="btn btn-primary w-100">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Contact Model pour supprimer-->
+<div class="modal" tabindex="-1" id="deleteContact" *ngIf="showModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-trash">Supprimer contact</i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row" method="post">
+                    <div class="col-md-12 mb-3">
+                        <label for="nomInput" class="form-label">Nom</label>
+                        <input [(ngModel)]="ContactToDelete.nom" name="nom" required type="text" class="form-control"
+                            placeholder="Nom">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="prenomInput" class="form-label">Prénom</label>
+                        <input [(ngModel)]="ContactToDelete.prenom" name="prenom" required type="text"
+                            class="form-control" id="prenomInput" placeholder="Prénom">
+                    </div>
+                    <div class="col-md-12">
+                        <button (click)="confirmDelete()" class="btn btn-danger w-100">Supprimer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

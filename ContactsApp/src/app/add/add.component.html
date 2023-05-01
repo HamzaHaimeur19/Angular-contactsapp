@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card col-sm-5">
+        <div class="card-header"><i class="fa fa-plus">ajouter un patient</i></div>
+        <div class="card-body d-flex justify-content-center align-items-center h-100">
+            <form class="row" method="post">
+                <div class="col-md-12 mb-3">
+                    <label for="nomInput" class="form-label">Nom</label>
+                    <input [(ngModel)]="newContact.nom" name="nom" required type="text" class="form-control"
+                        placeholder="Nom">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="prenomInput" class="form-label">Prénom</label>
+                    <input [(ngModel)]="newContact.prenom" name="prenom" required type="text" class="form-control"
+                        id="prenomInput" placeholder="Prénom">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="telInput" class="form-label">Tel</label>
+                    <input [(ngModel)]="newContact.tel" name="tel" required type="text" class="form-control"
+                        id="telInput" placeholder="Tel">
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="statusInput" class="form-label">Status</label>
+                    <select [(ngModel)]="newContact.status" name="status" required class="form-control"
+                        id="statusInput">
+                        <option disabled value="">-- choisir --</option>
+                        <option [ngValue]="'active'">active</option>
+                        <option [ngValue]="'inactive'">inactive</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <button (click)="saveContact()" class="btn btn-primary w-100">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
