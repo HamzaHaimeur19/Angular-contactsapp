@@ -30,6 +30,11 @@ export class ContactService {
     return this.httpClient.delete<Object>("http://localhost/contacts-app-php.api/delete_contact.php?id=" + contactId);
   }
 
+  //trouver un contact à l'aide de l'api find_contacts
+  findContacts(searchTerm: string): Observable<Contact[]> {
+    return this.httpClient.get<Contact[]>("http://localhost/contacts-app-php.api/find_contacts.php?term=" + searchTerm);
+  }
+
 
 
 

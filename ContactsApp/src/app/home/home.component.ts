@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact.class';
 //import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -16,9 +17,9 @@ export class HomeComponent implements OnInit {
   editIndex: number | undefined; // index dans le tableau à modifier
   ContactToDelete: Contact = new Contact(); // objet contact à supprimer
   deleteIndex: number = -1; // index dans le tableau à supprimer
-  showModal = true;
+  searchTerm : string = '';
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private appComponent : AppComponent) { }
 
   ngOnInit() { //méthode pour initialiser les objets
     //this.Contacts = this.contactService.getContacts();
@@ -29,6 +30,14 @@ export class HomeComponent implements OnInit {
     )
 
     this.Date = new Date(); // definir la date d'aujourd'hui
+
+    this.appComponent.searchEvent.subscribe((searchTerm) => {
+      this.searchTerm = searchTerm;
+      this.contactService.findContacts(this.searchTerm).subscribe(
+        (response: Contact[]) => {
+          this.Contacts = response;
+        });
+    });
   }
 
   editContact(index: number) {
@@ -76,13 +85,18 @@ export class HomeComponent implements OnInit {
     if (this.deleteIndex === -1) {
       return;
     }
-  
+
     this.contactService.deleteContact(this.ContactToDelete.id).subscribe((response) => {
       this.Contacts.splice(this.deleteIndex, 1);
       this.ContactToDelete = new Contact();
       this.deleteIndex = -1; // reset deleteIndex to -1 after successful deletion
     });
   }
-  
+
+  onfindContacts(searchValue : string){
+    this.searchTerm = searchValue;
+    //console.log(this.searchTerm);
+
+  }
 
 }
