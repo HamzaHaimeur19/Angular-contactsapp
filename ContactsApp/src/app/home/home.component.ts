@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
     this.contactService.deleteContact(this.ContactToDelete.id).subscribe((response) => {
       this.Contacts.splice(this.deleteIndex, 1);
       this.ContactToDelete = new Contact();
-      this.deleteIndex = -1; // reset deleteIndex to -1 after successful deletion
+      this.deleteIndex = -1; // reinitisaliser deleteIndex à -1 après suppression avec succés
     });
   }
 

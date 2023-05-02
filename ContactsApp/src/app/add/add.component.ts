@@ -27,4 +27,18 @@ export class AddComponent {
         console.log(error);
       }
   }
+
+  formIsValid() {
+    return (
+      this.newContact &&
+      this.newContact.nom &&
+      this.newContact.nom.trim().length !== 0 &&
+      this.newContact.prenom &&
+      this.newContact.prenom.trim().length !== 0 &&
+      this.newContact.tel &&
+      this.newContact.tel.trim().length !== 0 &&
+      this.newContact.status
+    );
+  }
+  // s'assurer que le formulaire n'est pas vide
 }

@@ -28,7 +28,7 @@
                     </select>
                 </div>
                 <div class="col-md-12">
-                    <button (click)="saveContact()" class="btn btn-primary w-100">Ajouter</button>
+                    <button [disabled] = "!formIsValid()" (click)="saveContact()" class="btn btn-primary w-100">Ajouter</button>
                 </div>
             </form>
         </div>

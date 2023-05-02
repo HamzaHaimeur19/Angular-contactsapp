@@ -5,19 +5,23 @@ import { AppComponent } from './app.component';
 import { AddComponent } from './add/add.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // import FormsModule
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './auth/auth.component'; // import FormsModule
 
 @NgModule({
   declarations: [
     AppComponent,
     AddComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule // add FormsModule to imports
+    FormsModule // ajouter FormsModule à imports
   ],
   providers: [],
   bootstrap: [AppComponent]

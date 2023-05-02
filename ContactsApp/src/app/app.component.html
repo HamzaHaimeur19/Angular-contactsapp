@@ -1,9 +1,11 @@
 <html>
+
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg bg-light" *ngIf="showWholeNavBar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><i class="fa fa-users">Angular Contacts App</i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -20,11 +22,18 @@
             <a class="nav-link" routerLink="add">
           <li class="fa fa-plus"></li>Ajouter</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="login">
+          <li class="fa fa-sign-in-alt"></li>Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="auth">
+          <li class="fa fa-user-plus"></li>S'enregistrer</a>
+          </li>
         </ul>
-      
         <form *ngIf="showNavBar" class="d-flex" role="search">
           <input name="search" class="form-control me-2" placeholder="Rechercher par nom" aria-label="Search"
-            type="text" [(ngModel)]="searchTerm" (input) = "findContacts()">
+            type="text" [(ngModel)]="searchTerm" (input)="findContacts()">
           <!-- <button (click)="findContacts()" class="btn btn-outline-success" type="submit">
             <li class="fa fa-search">Rechercher</li>
           </button> -->
@@ -33,7 +42,7 @@
     </div>
   </nav>
   <div class="container fluid">
-    <router-outlet (activate)="toggleNavBar($event)">
+    <router-outlet (activate)="toggleNavBar($event)" (activate)="toggleWholeNavBar($event)">
     </router-outlet>
   </div>
 </body>
