@@ -1,2 +1,2 @@
 # Angular-contactsapp
-![Example Image](./login.png)
+![Example Image](login.png)
