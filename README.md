@@ -1,1 +1,2 @@
-![Example Image](./login.png)
+![Se connecter](./login.png)
+![S'inscrire](./Enregistrer.png)

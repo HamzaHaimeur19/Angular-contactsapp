@@ -101,5 +101,7 @@ ng g service nomservice
 // si on veut utiliser ngModule on importe import { FormsModule } from '@angular/forms'; // import FormsModule dans app module
 
 //router est utilisé dans le component.ts afin de redirecter sans rafraichir la page
+//créer une classe
+ng g class nomclasse
 
 
