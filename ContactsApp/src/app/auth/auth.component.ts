@@ -38,7 +38,7 @@ export class AuthComponent {
         this.newUser.email = '';
         this.newUser.password = '';
         localStorage.setItem('user', JSON.stringify(response));
-        this.router.navigate(['/home']);
+        location.href="home";
       },
       (error) => {
         console.log('Error:', error);

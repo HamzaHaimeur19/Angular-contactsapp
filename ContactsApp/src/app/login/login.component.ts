@@ -31,7 +31,7 @@ export class LoginComponent {
       this.newUser.password = '';
       localStorage.setItem('user', JSON.stringify(response)); // convertir les données de l'utilisateur connecté en JSON
       console.log(this.newUser);
-      this.router.navigate(['/home']); // naviguer à home après inscription
+      location.href="home"; // naviguer à home après inscription
     },
     (error) => {
       console.log('Error:', error);
