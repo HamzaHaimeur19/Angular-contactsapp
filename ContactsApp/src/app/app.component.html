@@ -5,9 +5,13 @@
 </head>
 
 <body>
+  <div class="alert alert-success" *ngIf="showSuccessMessage" role="alert">
+    <i class="fas fa-check-circle animated-icon"></i>
+    Connecté avec succès Mr {{existingUser?.nom}} {{existingUser?.prenom}}
+  </div>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a *ngIf="logged" class="navbar-brand" href="#"><i class="fa fa-users">Angular Contacts App </i></a>
+      <a *ngIf="logged" class="navbar-brand" routerLink="home"><i class="fa fa-users">Angular Contacts App </i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

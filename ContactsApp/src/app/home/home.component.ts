@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   ContactToDelete: Contact = new Contact(); // objet contact à supprimer
   deleteIndex: number = -1; // index dans le tableau à supprimer
   searchTerm : string = '';
+  showSuccessMessage: boolean = false;
+  showSuccessMessageUpdate: boolean = false;
 
   constructor(private contactService: ContactService, private appComponent : AppComponent) { }
 
@@ -65,6 +67,9 @@ export class HomeComponent implements OnInit {
       this.Contacts[this.editIndex as number] = updatedContact; // remplacer l'ancien contact par le nouveau dans le tableau
 
       this.ContactToEdit = new Contact(); // créer un nouvel objet Contact pour effacer les valeurs précédentes
+      this.showSuccessMessageUpdate = true;
+      setTimeout(() => this.showSuccessMessageUpdate = false, 3000); // cacher message après 3 secondes
+     
     });
   }
 
@@ -90,6 +95,8 @@ export class HomeComponent implements OnInit {
       this.Contacts.splice(this.deleteIndex, 1);
       this.ContactToDelete = new Contact();
       this.deleteIndex = -1; // reinitisaliser deleteIndex à -1 après suppression avec succés
+      this.showSuccessMessage = true;
+      setTimeout(() => this.showSuccessMessage = false, 3000); // cacher message après 3 secondes
     });
   }
 

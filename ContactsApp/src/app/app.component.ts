@@ -8,6 +8,7 @@ import { User } from './user';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { HttpRequest } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class AppComponent {
   Contacts: Contact[] = [];
   logged: boolean = false;
   existingUser: User | null = null;
+  showSuccessMessage: boolean = false;
 
 
 
@@ -43,9 +45,14 @@ export class AppComponent {
 
 
     ngOnInit() {
-      if(this.userService.isLoggedIn !==null){
+      const userJson = localStorage.getItem('user');
+      if (userJson !== null) {
+        const user = JSON.parse(userJson);
         this.logged = true;
-        this.existingUser = this.userService.isLoggedIn();
+        this.existingUser = user;
+        this.showSuccessMessage = true;
+        setTimeout(() => this.showSuccessMessage = false, 5000); // cacher message après 3 secondes
+        console.log(user);
       } else {
         this.logged = false;
       }
@@ -64,7 +71,9 @@ export class AppComponent {
   signOut() {
     this.userService.LogOut();
     this.logged = false;
-    
-    this.router.navigate(['/login']);
+    this.existingUser = null;
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    location.href = "login";
   }
 }

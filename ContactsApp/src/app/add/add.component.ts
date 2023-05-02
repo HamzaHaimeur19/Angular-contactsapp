@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddComponent {
 
   newContact: Contact = new Contact(); // instancier nouveau objet pour ajouter un contact
+  showSuccessMessage: boolean = false;
 
   constructor(private contactService: ContactService, private router: Router) { }
 
@@ -22,7 +23,12 @@ export class AddComponent {
     this.contactService.addContact(this.newContact).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['/home']); // naviger vers le path home sans rafraichir la page
+        //this.router.navigate(['/home']); // naviger vers le path home sans rafraichir la page
+        this.showSuccessMessage = true;
+        setTimeout(() => this.showSuccessMessage = false, 3000); // cacher message après 3 secondes
+        this.newContact.nom = '';
+        this.newContact.prenom = '';
+        this.newContact.tel = '';
       }), (error: any) => {
         console.log(error);
       }

@@ -1,3 +1,7 @@
+<div class="alert alert-success" *ngIf="showSuccessMessage" role="alert">
+    <i class="fas fa-check-circle animated-icon"></i>
+    Contact ajouté avec succés!
+</div>
 <div class="container">
     <div class="card col-sm-5">
         <div class="card-header"><i class="fa fa-plus">ajouter un patient</i></div>
@@ -28,7 +32,8 @@
                     </select>
                 </div>
                 <div class="col-md-12">
-                    <button [disabled] = "!formIsValid()" (click)="saveContact()" class="btn btn-primary w-100">Ajouter</button>
+                    <button [disabled]="!formIsValid()" (click)="saveContact()"
+                        class="btn btn-primary w-100">Ajouter</button>
                 </div>
             </form>
         </div>
