@@ -24,6 +24,6 @@ import { AuthComponent } from './auth/auth.component'; // import FormsModule
     FormsModule // ajouter FormsModule à imports
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // component a demarrer au depart
 })
 export class AppModule { }

@@ -32,9 +32,8 @@ export class LoginComponent {
           this.newUser.email = '';
           this.newUser.password = '';
           localStorage.setItem('user', JSON.stringify(response));
-          console.log(this.newUser);
-          //this.router.navigate(['/home']); // navigate to home after successful login
-          location.href = "home";
+          //console.log(this.newUser);
+          this.router.navigate(['home']); // navigate to home after successful login
         },
         (error) => {
           console.log('Error:', error);

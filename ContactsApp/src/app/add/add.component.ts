@@ -22,7 +22,7 @@ export class AddComponent {
   saveContact() {
     this.contactService.addContact(this.newContact).subscribe(
       (response) => {
-        console.log(response);
+        //console.log(response);
         //this.router.navigate(['/home']); // naviger vers le path home sans rafraichir la page
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 3000); // cacher message après 3 secondes

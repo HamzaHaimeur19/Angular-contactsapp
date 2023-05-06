@@ -6,9 +6,6 @@ import { ContactService } from './contact.service';
 import { LoginComponent } from './login/login.component';
 import { User } from './user';
 import { UserService } from './user.service';
-import { Router } from '@angular/router';
-import { HttpRequest } from '@angular/common/http';
-import { APP_BASE_HREF } from '@angular/common';
 
 
 @Component({
@@ -39,25 +36,34 @@ export class AppComponent {
     }
   } // cette fonction permet de ne pas afficher le formulaire de recherche pour le component AddComponent/AuthComponent et LoginComponent
 
-  
-  constructor(private contactService: ContactService, private userService: UserService,
-    private router: Router) { }
+
+  constructor(private contactService: ContactService, private userService: UserService) { }
 
 
-    ngOnInit() {
-      const userJson = localStorage.getItem('user');
-      if (userJson !== null) {
-        const user = JSON.parse(userJson);
+  ngOnInit() {
+     // subscribe pour userChanged Observable pour avoir les changements de l'utilisateur connecté
+     this.userService.userChanged.subscribe((user: User | null) => {
+      if (user !== null) {
         this.logged = true;
         this.existingUser = user;
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 5000); // cacher message après 3 secondes
-        console.log(user);
+        setTimeout(() => this.showSuccessMessage = false, 5000);
+        //console.log(this.existingUser);
       } else {
         this.logged = false;
+        this.existingUser = null;
       }
+    });
+
+    // checker si un utilisateur est connecté
+    const user = this.userService.isLoggedIn();
+    if (user !== null) {
+      this.logged = true;
+      this.existingUser = user;
+      //console.log(this.existingUser);
     }
-    
+  }
+
 
   findContacts() {
     this.contactService.findContacts(this.searchTerm).subscribe(
@@ -71,9 +77,7 @@ export class AppComponent {
   signOut() {
     this.userService.LogOut();
     this.logged = false;
-    this.existingUser = null;
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    location.href = "login";
+    this.existingUser = this.userService.isLoggedIn();
   }
-}
+  }
+

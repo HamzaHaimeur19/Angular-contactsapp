@@ -3,6 +3,7 @@ import { ContactService } from '../contact.service';
 import { Contact } from '../contact.class';
 //import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { User } from '../user';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   searchTerm : string = '';
   showSuccessMessage: boolean = false;
   showSuccessMessageUpdate: boolean = false;
+  
 
   constructor(private contactService: ContactService, private appComponent : AppComponent) { }
 
