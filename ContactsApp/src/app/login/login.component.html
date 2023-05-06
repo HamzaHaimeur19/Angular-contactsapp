@@ -7,14 +7,14 @@
                     <label for="emailInput" class="form-label">Email</label>
                     <input name="email" required type="email" class="form-control" [(ngModel)]="newUser.email"
                         placeholder="Entrer votre Email" (input)="userExists=false">
-                    <span *ngIf="userExists" class="text-danger">Email incorrect.</span>
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="passwordInput" class="form-label">Mot de passe</label>
                     <input [(ngModel)]="newUser.password" name="password" required type="password" class="form-control"
                         id="passwordInput" (input)="userExists=false" placeholder="Entrer votre Mot de passe">
-                    <span *ngIf="userExists" class="text-danger">Mot de passe incorrect.</span>
+                   
                 </div>
+                <span *ngIf="userExists" class="text-danger">Email ou Mot de passe incorrects.</span>
                 <div class="col-md-12">
                     <button (click)="submitForm()" [disabled]="isButtonDisabled()" class="btn btn-primary w-100">Se
                         connecter</button>
