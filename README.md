@@ -2,9 +2,11 @@ cette application est developpée via les apis PHP, angular js en utilisants TYP
 
 ![Se connecter](./login.png)
 ![S'inscrire](./Enregistrer.png)
-![Home](./home.png)
 ![modifier](./modifier.png)
 ![supprimer](./supprimer.png)
 ![rechercher](./Rechercher.png)
-![Ajouter](./ajouter.png)
+après l'ajout des images
+![Home](./home.png)
+![add2](./Enregistrer2.png)
+![add3](./Enregistrer3.png)
 
