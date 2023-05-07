@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component'; // import FormsModule
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthComponent } from './auth/auth.component'; // import FormsModule
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule // ajouter FormsModule à imports
+    FormsModule,
+    ReactiveFormsModule // ajouter FormsModule à imports
   ],
   providers: [],
   bootstrap: [AppComponent] // component a demarrer au depart

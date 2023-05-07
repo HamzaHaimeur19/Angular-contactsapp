@@ -5,6 +5,7 @@ export class Contact {
   tel!: string;
   status!: string;
   Date ?: Date;
+  image!: File;
 
  
 } // contacts attributes

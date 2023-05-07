@@ -36,7 +36,7 @@
           </li>
           <li class="nav-item">
             <a (click) = "signOut()" routerLink="login" class="nav-link" *ngIf="logged">
-          <li class="fa fa-user-plus"></li>Se deconnecter</a>
+          <li class="fa fa-sign-out"></li>Se deconnecter</a>
           </li>
           <div style = "margin-top: 8px; margin-left: 200px;" *ngIf="logged">
           <p *ngIf="logged">Utilisateur: <strong>{{existingUser?.nom}} {{existingUser?.prenom}}</strong></p>

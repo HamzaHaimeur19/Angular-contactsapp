@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.ContactToEdit.prenom = this.Contacts?.[index].prenom;
     this.ContactToEdit.tel = this.Contacts?.[index].tel;
     this.ContactToEdit.status = this.Contacts?.[index].status;
+    this.ContactToEdit.image = this.Contacts?.[index].image;
     this.editIndex = index; // modifier l'index passé en parametre
     //console.log('ContactToEdit:', this.ContactToEdit);
     //console.log("appel de methode avec succés");
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
       updatedContact.prenom = response.prenom;
       updatedContact.tel = response.tel;
       updatedContact.status = response.status;
+      updatedContact.image = response.image;
 
       this.Contacts[this.editIndex as number] = updatedContact; // remplacer l'ancien contact par le nouveau dans le tableau
 

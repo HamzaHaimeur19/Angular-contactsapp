@@ -16,15 +16,19 @@
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prenom</th>
                         <th scope="col">Numero</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Action1</th>
+                        <th scope="col">Action2</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let contact of Contacts; let i = index">
                         <td>{{contact.id}}</td>
+                        <td><img [src]="'http://localhost/contacts-app-php.api/' +contact.image" alt="Contact Image" width="80" height="80"></td>
                         <td>{{contact.nom | uppercase}}</td>
                         <td>{{contact.prenom}}</td>
                         <td>{{contact.tel}}</td>
@@ -46,7 +50,7 @@
                                 </span>
                             </td>
                         </ng-template>
-
+                       
                     </tr>
                 </tbody>
             </table>
